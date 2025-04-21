@@ -1,0 +1,104 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+
+<head>
+  <title>Credit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-image: url("{% static 'images/6.jpg' %}"); /* Background image */
+      background-size: cover; /* Cover the entire viewport */
+      background-position: center; /* Center the background image */
+      color: white; /* Default text color to white */
+      font-family: Arial, sans-serif; /* Set a default font */
+      opacity: 0; /* Initially hide the content */
+      animation: fadeIn 1s forwards; /* Fade-in animation */
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1; /* Fade to visible */
+      }
+    }
+
+    .jumbotron {
+      width: 800px;
+      position: relative;
+      left: 270px;
+      text-align: center; /* Centering the header */
+      background-color: rgba(216, 8, 154, 0.7); /* Bootstrap primary color with transparency */
+      color: white;
+      padding: 0.5rem 0.5rem; /* Added padding for aesthetics */
+      margin-top: 8rem; /* Space below the jumbotron */
+      border-radius: 1rem; /* Rounded corners */
+    }
+
+    .card {
+      margin: 15px; /* Space between cards */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+      opacity: 0; /* Initially hide the cards */
+      animation: slideIn 0.5s forwards; /* Slide-in animation */
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(20px); /* Start from below */
+        opacity: 0; /* Hidden */
+      }
+      to {
+        transform: translateY(0); /* End at normal position */
+        opacity: 1; /* Visible */
+      }
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Scale effect on hover */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect on hover */
+    }
+
+    .c {
+      display: flex; /* Use flexbox for centering */
+      justify-content: center; /* Center the card */
+      margin-bottom: 20px; /* Space below the card */
+    }
+
+    h3 {
+      text-align: center; /* Centering section headers */
+    }
+
+    p {
+      text-align: justify; /* Justified text for better readability */
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text container */
+      padding: 20px; /* Padding for the text container */
+      border-radius: 0.5rem; /* Rounded corners for the container */
+    }
+    h1{
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="jumbotron">
+    <h1>Credit card Fraud detection using machine learning</h1>
+  </div>
+
+  <div class="c">
+    <a href="{% url 'index' %}">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{% static 'images/2.jpg' %}" alt="Player Behavior Image">
+      </div>
+    </a>
+  </div>
+
+</body>
+{% endblock content %}

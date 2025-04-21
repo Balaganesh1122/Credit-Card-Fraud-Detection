@@ -1,0 +1,259 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    /* Left Side Styling */
+    .left-side {
+      width: 50%;
+      background-image: url("{% static 'images/6.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      color: white;  /* Text color set to white */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px;
+      text-align: center;
+      font-family: "Times New Roman", serif;
+    }
+
+    .left-side h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      animation: fadeInLeft 1.5s ease-in-out;
+    }
+
+    .left-side p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      animation: fadeInLeft 2s ease-in-out;
+    }
+
+    /* Right Side Styling (Form) */
+    .right-side {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    header {
+      height: 60px;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #ceae4e;
+    }
+
+    form {
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      max-width: 400px;
+      animation: fadeInRight 1.5s ease-in-out;
+    }
+
+    h1 {
+      text-align: center;
+      color: hsl(0, 40%, 98%);
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #f7f0f0;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #080808;
+      border-radius: 4px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 15px;
+      color: hsl(0, 18%, 97%);
+    }
+
+    a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInLeft {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      0% { opacity: 0; transform: translateX(30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+  <style>
+    /* Existing styles... */
+  
+    .right-side {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      background-image: url("https://media.istockphoto.com/id/1367660200/photo/blue-dna-illustration-with-bokeh-lights-genetic-medicine-and-innovation.webp?a=1&b=1&s=612x612&w=0&k=20&c=jvP6BulOjT19uIcG2w7DqUOOyM3lc99n0mJoEP17wyA=");
+      background-size: cover;
+      background-position: center;
+      
+    }
+    .box{
+      position: relative;
+      left: 90px;
+      top: 40px;
+    }
+    label{
+      color: rgb(241, 241, 241);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="navbar-brand" href="{% url 'home' %}">Credit card Fraud detection using machine learning</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        {% if user.is_authenticated %}
+          <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+          <li><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
+          <li><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Left Side Content -->
+    <div class="left-side">
+      <h1>Project Overview</h1>
+      <p>Welcome to the Credit Card Fraud Detection using Machine Learning platform. Our tool leverages cutting-edge technology to provide comprehensive insights and predictions based on fraudulent transactions. Login to explore more.</p>
+</div>
+
+    <!-- Right Side Login Form -->
+    <div class="right-side">
+      <form method="post" class="box">
+        {% csrf_token %}
+        <h1>Login</h1>
+
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" name="pass" required>
+
+        <button type="submit">Log In</button>
+
+        <p>You need an account to continue. <a href="{% url 'signup' %}">Sign up</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            alert("{{ message }}");
+        </script>
+    {% endfor %}
+{% endif %}
+
+</html>
+{% endblock content %}

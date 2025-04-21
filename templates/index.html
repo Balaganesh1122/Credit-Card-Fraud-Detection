@@ -1,0 +1,287 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    /* Reset margins and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #ebe1e1;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 0 10px;
+      color: #fff;
+    }
+
+    /* Navbar Styling */
+    header {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header h2 {
+      color: #fff;
+      font-size: 1.8em;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 1em;
+      font-weight: 500;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(0, 150, 136, 0.2);
+      color: #009688;
+    }
+
+    /* Main Container and Form */
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 800px;
+      margin-top: 100px; /* To avoid overlap with fixed navbar */
+      animation: fadeInUp 0.5s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      font-size: 2em;
+      margin-bottom: 30px;
+      font-weight: 700;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .form-group label {
+      color: #333;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+
+    .IN {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 2px solid #009688;
+      font-size: 1em;
+      color: #333;
+      background-color: #f8f8f8;
+      transition: border-color 0.3s;
+    }
+
+    .IN:focus {
+      border-color: #009688;
+      outline: none;
+    }
+
+    /* Button Styling */
+    button {
+      width: 100%;
+      padding: 12px;
+      font-weight: bold;
+      border-radius: 25px;
+      background-color: #009688;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #00796b;
+    }
+
+    /* Hover effect for inputs */
+    .form-group input:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .form-group input {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+        text-transform: uppercase;
+        
+      }
+    }
+    h4{
+      
+      text-transform: uppercase;
+    }
+    h1 {
+        font-size: 1.8em;
+        text-transform: uppercase;
+        
+      }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <h4>Credit card Fraud detection using machine learning</h4>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Credit card Fraud detection using machine learning</h1>
+    <form action="{% url 'result' %}" method="get">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="cc_num">Credit Card Number:</label>
+        <input class="IN" placeholder="Enter Credit Card Number" type="text" required name="cc_num" id="cc_num">
+      </div>
+
+      <div class="form-group">
+        <label for="category">Transaction Category:</label>
+        <select class="IN" required name="category" id="category">
+            <option value="" disabled selected>Select Category</option>
+            <option value="grocery_pos">Grocery (POS)</option>
+            <option value="gas_transport">Gas & Transport</option>
+            <option value="home">Home</option>
+            <option value="shopping_net">Shopping (Online)</option>
+            <option value="kids_pets">Kids & Pets</option>
+            <option value="shopping_pos">Shopping (POS)</option>
+            <option value="personal_care">Personal Care</option>
+            <option value="health_fitness">Health & Fitness</option>
+            <option value="food_dining">Food & Dining</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="misc_pos">Miscellaneous (POS)</option>
+            <option value="misc_net">Miscellaneous (Online)</option>
+            <option value="travel">Travel</option>
+        </select>
+    </div>
+    
+
+      <div class="form-group">
+        <label for="amt">Transaction Amount ($):</label>
+        <input class="IN" placeholder="Enter Transaction Amount" type="text" required name="amt" id="amt">
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select class="IN" required name="gender" id="gender">
+            <option value="" disabled selected>Select Gender</option>
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input class="IN" placeholder="Enter Age" type="text" required name="age" id="age">
+      </div>
+
+      <div class="form-group">
+        <label for="trans_month">Transaction Month:</label>
+        <input class="IN" placeholder="Enter Transaction Month (1-12)" type="text" required name="trans_month" id="trans_month">
+      </div>
+
+      <div class="form-group">
+        <label for="trans_year">Transaction Year:</label>
+        <input class="IN" placeholder="Enter Transaction Year" type="text" required name="trans_year" id="trans_year">
+      </div>
+
+      <div class="form-group">
+        <label for="lat_dis">Latitude Distance:</label>
+        <input class="IN" placeholder="Enter Latitude Distance" type="text" required name="lat_dis" id="lat_dis">
+      </div>
+
+      <div class="form-group">
+        <label for="long_dis">Longitude Distance:</label>
+        <input class="IN" placeholder="Enter Longitude Distance" type="text" required name="long_dis" id="long_dis">
+      </div>
+
+     
+
+      <button type="submit">Predict Fraud</button>
+</form>
+
+
+  </div>
+
+</body>
+
+</html>
+{% endblock content %}
