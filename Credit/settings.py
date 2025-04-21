@@ -29,8 +29,8 @@ SECRET_KEY = '&k#e0+@389p!youzjc_r_5mia((ii6*)1=80lf(a5o=f9s@k=z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['ALLOWED_HOSTS = ['credit-card-fraud-detection-5.onrender.com', 'localhost', '127.0.0.1']']
+CSRF_TRUSTED_ORIGINS = ['https://credit-card-fraud-detection-5.onrender.com']
 
 # Application definition
 
